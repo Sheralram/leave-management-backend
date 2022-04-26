@@ -25,7 +25,7 @@ import java.util.List;
  *
  * @author : Sampriti Roy Chowdhury
  * @version : 0.0.1
- * @since : 15-12-2021
+ * @since : 07-04-2022
  */
 @Service
 public class EmployeeService implements IEmployeeService {
@@ -53,7 +53,6 @@ public class EmployeeService implements IEmployeeService {
      */
     @Override
     public List<Employee> getAllEmployee() {
-
         return employeeRepository.findAll();
     }
     /**
