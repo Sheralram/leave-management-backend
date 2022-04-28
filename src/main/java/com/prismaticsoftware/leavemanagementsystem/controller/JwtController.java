@@ -4,6 +4,8 @@ import com.prismaticsoftware.leavemanagementsystem.entity.JwtRequest;
 import com.prismaticsoftware.leavemanagementsystem.entity.JwtResponse;
 import com.prismaticsoftware.leavemanagementsystem.service.CustomerUserDetailsService;
 import com.prismaticsoftware.leavemanagementsystem.utility.JwtUtility;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,9 +24,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 
-@CrossOrigin(origins="http://localhost:4200")
+//@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin("*")
 @RestController
 public class JwtController {
+
+    Logger logger= LoggerFactory.getLogger(JwtController.class);
     @Autowired
     private CustomerUserDetailsService customUserDeatilsService;
 
@@ -36,7 +41,8 @@ public class JwtController {
     @CrossOrigin(origins = "*")
     @RequestMapping(value= "/token", method = RequestMethod.POST)
     public ResponseEntity<?> generateToken(@RequestBody JwtRequest jwtRequest) throws Exception{
-        System.out.println(jwtRequest);
+//        System.out.println(jwtRequest);
+        logger.info(jwtRequest.toString());
         try {
             this.authenticationManager
                     .authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getEmailId(), jwtRequest.getPassword()));
@@ -44,10 +50,12 @@ public class JwtController {
         }catch(UsernameNotFoundException e) {
             e.printStackTrace();
             System.out.println(jwtRequest);
+            logger.info(jwtRequest.toString());
             throw new Exception("wrong");
         }catch(BadCredentialsException e) {
             e.printStackTrace();
             System.out.println(jwtRequest);
+            logger.info(jwtRequest.toString());
             throw new Exception("wrong!");
         }
 

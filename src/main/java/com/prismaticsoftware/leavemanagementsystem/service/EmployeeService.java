@@ -5,6 +5,8 @@ import com.prismaticsoftware.leavemanagementsystem.dto.EmployeeDto;
 import com.prismaticsoftware.leavemanagementsystem.entity.Employee;
 import com.prismaticsoftware.leavemanagementsystem.exception.NoDataFoundException;
 import com.prismaticsoftware.leavemanagementsystem.repository.EmployeeRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
@@ -23,15 +25,17 @@ import java.util.List;
 /**
  * Purpose : To implement all the methods in controller class
  *
- * @author : Sampriti Roy Chowdhury
+ * @author : Ramkrishna Sheral
  * @version : 0.0.1
  * @since : 07-04-2022
  */
 @Service
 public class EmployeeService implements IEmployeeService {
-    private static final String EMPLOYEE_ADDED_SUCCESSULLY = "Employee Record is added Successfully ";
-    private static final String EMPLOYEE_UPDATED_SUCCESSULLY = "Employee Record is updated Successfully ";
-    private static final String EMPLOYEE_DELETED_SUCCESSULLY = "Employee Record is deleted Successfully";
+    private static final String EMPLOYEE_ADDED_SUCCESSFULLY = "Employee Record is added Successfully ";
+    private static final String EMPLOYEE_UPDATED_SUCCESSFULLY = "Employee Record is updated Successfully ";
+    private static final String EMPLOYEE_DELETED_SUCCESSFULLY = "Employee Record is deleted Successfully";
+
+    Logger logger = LoggerFactory.getLogger(EmployeeService.class);
     @Autowired
     private EmployeeRepository employeeRepository;
 
@@ -67,7 +71,8 @@ public class EmployeeService implements IEmployeeService {
         Employee employee = new Employee();
         employee = employeePayRollBuilder.buildEmployeePayrollEntity(employeeDto,employee);
         employeeRepository.save(employee);
-        return EMPLOYEE_ADDED_SUCCESSULLY;
+        logger.info("Employee Added SuccessFully" +employee.toString());
+        return EMPLOYEE_ADDED_SUCCESSFULLY;
     }
     public void sendEmail(EmployeeDto employeePayrollDto) throws MailException {
         /*
@@ -111,10 +116,12 @@ public class EmployeeService implements IEmployeeService {
      */
     @Override
     public String updateEmployeeById(int employeeId, EmployeeDto employeeDto)  {
+
         Employee employee = findEmployeeById(employeeId);
         employee = employeePayRollBuilder.buildEmployeePayrollEntity(employeeDto,employee);
         employeeRepository.save(employee);
-        return EMPLOYEE_UPDATED_SUCCESSULLY;
+        logger.info("Employee Updated" +employee.toString());
+        return EMPLOYEE_UPDATED_SUCCESSFULLY;
     }
     /**
      * Purpose : This method is used to delete the employee details of corressponding id
@@ -126,6 +133,8 @@ public class EmployeeService implements IEmployeeService {
     public String deleteEmployeeById(int employeeId) {
         Employee employee = findEmployeeById(employeeId);
         employeeRepository.delete(employee);
-        return EMPLOYEE_DELETED_SUCCESSULLY;
+        logger.info("Employee Deleted" +employee.toString());
+        return EMPLOYEE_DELETED_SUCCESSFULLY;
     }
+
 }
