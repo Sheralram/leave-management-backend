@@ -4,6 +4,7 @@ import com.prismaticsoftware.leavemanagementsystem.dto.EmployeeDto;
 import com.prismaticsoftware.leavemanagementsystem.dto.ResponseDto;
 import com.prismaticsoftware.leavemanagementsystem.entity.Employee;
 import com.prismaticsoftware.leavemanagementsystem.service.EmployeeService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import java.util.List;
  * @version : 0.0.1
  * @since : 07-04-2022
  */
+
 @RestController
 @RequestMapping(value = "/leave-management-system")
 @CrossOrigin("*")
@@ -38,6 +40,7 @@ public class LeaveController {
      *
      * @return the list of employee details
      */
+
 //    @GetMapping("/get-all-employee")
 //    public ResponseEntity<ResponseDto> getAllEmployee() {
 //        List<Employee> employeePayRollData = employeeService.getAllEmployee();
@@ -64,16 +67,16 @@ public class LeaveController {
     public ResponseEntity<String> addEmployeePayrollData(
             @RequestBody EmployeeDto employeePayrollDto) {
         logger.info("Entering addEmployeePayrollData");
-        employeePayrollDto.setEmailAddress(employeePayrollDto.getEmailAddress());  //Receiver's email address
-        /*
-         * Here we will call sendEmail() for Sending mail to the sender.
-         */
-        try {
-            notificationService.sendEmail(employeePayrollDto);
-        } catch (MailException mailException) {
-            System.out.println(mailException);
-            logger.info(mailException.toString());
-        }
+//        employeePayrollDto.setEmailAddress(employeePayrollDto.getEmailAddress());  //Receiver's email address
+//        /*
+//         * Here we will call sendEmail() for Sending mail to the sender.
+//         */
+//        try {
+//            notificationService.sendEmail(employeePayrollDto);
+//        } catch (MailException mailException) {
+//           // System.out.println(mailException);
+//            logger.info(mailException.toString());
+//        }
         String employeePayRollData = employeeService.addEmployee(employeePayrollDto);
         ResponseDto responseDTO = new ResponseDto("Created Employee Payroll Data For ", employeePayRollData);
         logger.info("Exit addEmployeePayrollData ");
@@ -94,6 +97,7 @@ public class LeaveController {
         logger.info("Exit getEmployeePayrollDataById");
         return new ResponseEntity<ResponseDto>(responseDto, HttpStatus.OK);
     }
+
     /**
      * Purpose : This method is used to update the employee data corresponding to the id
      *
@@ -101,6 +105,7 @@ public class LeaveController {
      * @param employeeDTO defines the data in DTO format
      * @return message if data is updated successfully
      */
+
     @PutMapping("/update/{employeeId}")
     public ResponseEntity<String> updateEmployeePayrollById(
             @PathVariable int employeeId,
@@ -118,6 +123,9 @@ public class LeaveController {
      * @param employeeId defines employee id
      * @return message if employee details of corresponding id is deleted successfully
      */
+
+
+
     @DeleteMapping("/delete/{employeeId}")
     public ResponseEntity<String> deleteEmployeePayroll(
             @PathVariable int employeeId) {
@@ -128,3 +136,4 @@ public class LeaveController {
         return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
     }
 }
+

@@ -124,7 +124,7 @@ public class EmployeeService implements IEmployeeService {
         return EMPLOYEE_UPDATED_SUCCESSFULLY;
     }
     /**
-     * Purpose : This method is used to delete the employee details of corressponding id
+     * Purpose : This method is used to delete the employee details of coressponding id
      *
      * @param employeeId defines employee id
      * @return message if deleted successfully

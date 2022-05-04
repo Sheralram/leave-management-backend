@@ -5,6 +5,13 @@ import lombok.Data;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+/**
+ * Purpose : To demonstrate fields of User in DTO
+ *
+ * @author : Ramkrishna Sheral
+ * @version : 0.0.1
+ * @since : 07-04-2022
+ */
 @Data
 public class UserDto {
     @NotNull

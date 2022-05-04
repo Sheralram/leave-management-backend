@@ -1,5 +1,13 @@
 package com.prismaticsoftware.leavemanagementsystem.entity;
 
+
+/**
+ * Purpose : To demonstrate Jwt request  with Email And Password
+ *
+ * @author : Ramkrishna Sheral
+ * @version : 0.0.1
+ * @since : 07-04-2022
+ */
 public class JwtRequest {
 
     String emailId;

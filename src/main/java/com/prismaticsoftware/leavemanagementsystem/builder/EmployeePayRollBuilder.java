@@ -21,7 +21,7 @@ public class EmployeePayRollBuilder {
      *
      * @param employeeDto defines the field of employee in DTO
      * @param employee defines the field of employee in entity
-     * @return the fiels of employee in the format of entity
+     * @return the fields of employee in the format of entity
      */
     public Employee buildEmployeePayrollEntity(EmployeeDto employeeDto, Employee employee) {
         BeanUtils.copyProperties(employeeDto, employee);

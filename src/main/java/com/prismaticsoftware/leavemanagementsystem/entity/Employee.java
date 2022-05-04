@@ -4,7 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 /**
- * Purpose : To demonstrate all the fields of employee in the entity databse format
+ * Purpose : To demonstrate all the fields of employee in the entity database format
  *
  * @author : Ramkrishna Sheral
  * @version : 0.0.1
@@ -29,10 +29,10 @@ public class Employee {
     @Column(name = "notes")
     private String notes;
 
-    @Column(name = "leaveStartdate")
+    @Column(name = "leaveStartDate")
     private String leaveStartDate;
 
-    @Column(name = "leaveEnddate")
+    @Column(name = "leaveEndDate")
     private String leaveEndDate;
 
     @Column(name = "emailAddress")

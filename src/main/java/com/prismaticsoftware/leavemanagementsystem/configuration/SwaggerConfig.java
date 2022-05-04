@@ -36,7 +36,7 @@ public class SwaggerConfig {
                 .build();
     }
     /**
-     * Purpose : This method is used to add extra datas which will give user a proper idea about
+     * Purpose : This method is used to add extra data's which will give user a proper idea about
      * the API(Application Programming Interface) information in the Swagger UI(User Interface) console
      *
      * @return the swagger API information
@@ -50,5 +50,4 @@ public class SwaggerConfig {
                 .version("1.0")
                 .build();
     }
-
 }

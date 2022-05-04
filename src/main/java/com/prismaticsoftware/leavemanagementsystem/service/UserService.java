@@ -21,6 +21,11 @@ public class UserService {
     @Autowired
     private CustomerUserDetailsService customerUserDetailsServiceilsService;
 
+    /**
+     * Purpose : To add user
+     * @param userDto takes the credential
+     * @return
+     */
     public UserEntity add(UserDto userDto) {
         UserEntity registerUSer = userRegisterRepository.findByEmailId(userDto.emailId);
         UserEntity userEntity = new UserEntity(userDto);
@@ -31,9 +36,20 @@ public class UserService {
             return null;
     }
 
+    /**
+     *
+     * @return List of users
+     */
     public List<UserEntity> getAll() {
         return userRegisterRepository.findAll();
     }
+
+    /**
+     * purpose: To generate a new password with the help of generated token
+     * @param token credentials to change with new password
+     * @param newPassword to change the current password
+     * @return  Added new password
+     */
 
     public String newPassword(String token, String newPassword) {
         String emailId = jwtUtil.extractUsername(token);

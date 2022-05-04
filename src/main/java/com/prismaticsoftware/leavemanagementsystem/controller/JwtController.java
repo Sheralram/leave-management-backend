@@ -23,6 +23,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Purpose : Generating Token  with the emailId and password of the SignUp Credentials
+ *
+ * @author : Ramkrishna Sheral
+ * @version : 0.0.1
+ * @since : 07-04-2022
+ */
 
 //@CrossOrigin(origins="http://localhost:4200")
 @CrossOrigin("*")
@@ -49,12 +56,12 @@ public class JwtController {
 
         }catch(UsernameNotFoundException e) {
             e.printStackTrace();
-            System.out.println(jwtRequest);
+//            System.out.println(jwtRequest);
             logger.info(jwtRequest.toString());
             throw new Exception("wrong");
         }catch(BadCredentialsException e) {
             e.printStackTrace();
-            System.out.println(jwtRequest);
+//            System.out.println(jwtRequest);
             logger.info(jwtRequest.toString());
             throw new Exception("wrong!");
         }

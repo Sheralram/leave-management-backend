@@ -1,5 +1,11 @@
 package com.prismaticsoftware.leavemanagementsystem.entity;
-
+/**
+ * Purpose : To demonstrate token
+ *
+ * @author : Ramkrishna Sheral
+ * @version : 0.0.1
+ * @since : 07-04-2022
+ */
 public class JwtResponse {
 
     String token;

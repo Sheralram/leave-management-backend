@@ -18,6 +18,12 @@ public class CustomerUserDetailsService implements UserDetailsService {
     @Autowired
     UserRepository userRepository;
 
+    /**
+     *
+     * @param username
+     * @return user find by Username
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         if (userRepository.findByEmailId(username) != null) {

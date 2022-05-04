@@ -6,6 +6,13 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * Purpose : To demonstrate all the fields of user in the entity database format
+ *
+ * @author : Ramkrishna Sheral
+ * @version : 0.0.1
+ * @since : 07-04-2022
+ */
 @Data
 @Entity
 @Table(name="User")
@@ -30,9 +37,6 @@ public class UserEntity {
         this.phoneNumber=userDto.phoneNumber;
         this.role=userDto.role;
     }
-
-
-
 
     public int getId() {
         return id;

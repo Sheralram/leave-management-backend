@@ -11,10 +11,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+/**
+ * Purpose : To create Token  , expire token and Validate Token
+ */
 @Service
 public class JwtUtility {
 
-    private String SECRET_KEY = "Sudip";
+    private String SECRET_KEY = "Ramkrishna";
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
