@@ -12,7 +12,7 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-
+//import static org.mockito.Mockito.*;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
@@ -53,11 +53,12 @@ public class EmployeeService implements IEmployeeService {
     /**
      * Purpose : This method is used to get list of details of all the employees
      *
-     * @return the list of employeed added
+     * @return the list of employee added
      */
     @Override
     public List<Employee> getAllEmployee() {
         return employeeRepository.findAll();
+//        return employeeRepository.findAllEmployee();
     }
     /**
      * Purpose : This method is used to add the details of employee
@@ -67,7 +68,6 @@ public class EmployeeService implements IEmployeeService {
      */
     @Override
     public String addEmployee(EmployeeDto employeeDto) {
-
         Employee employee = new Employee();
         employee = employeePayRollBuilder.buildEmployeePayrollEntity(employeeDto,employee);
         employeeRepository.save(employee);
@@ -104,8 +104,12 @@ public class EmployeeService implements IEmployeeService {
      */
     @Override
     public Employee findEmployeeById(int employeeId) {
+        logger.info("Entering in findEmployeeById");
         return employeeRepository.findById(employeeId).
                 orElseThrow(() -> new NoDataFoundException("Employee data not found of this id :" + employeeId));
+//       Employee employee =  new Employee();
+//        employee = employeeRepository.findById(employeeId);
+//        return employee;
     }
     /**
      * Purpose : This method is used to update the details of the employee of corresponding id
@@ -118,6 +122,7 @@ public class EmployeeService implements IEmployeeService {
     public String updateEmployeeById(int employeeId, EmployeeDto employeeDto)  {
 
         Employee employee = findEmployeeById(employeeId);
+        logger.info("Exit in findEmployeeById ");
         employee = employeePayRollBuilder.buildEmployeePayrollEntity(employeeDto,employee);
         employeeRepository.save(employee);
         logger.info("Employee Updated" +employee.toString());
@@ -132,8 +137,9 @@ public class EmployeeService implements IEmployeeService {
     @Override
     public String deleteEmployeeById(int employeeId) {
         Employee employee = findEmployeeById(employeeId);
+        logger.info("Exit in findEmployeById");
         employeeRepository.delete(employee);
-        logger.info("Employee Deleted" +employee.toString());
+        logger.info("Employee Deleted " +employee.toString());
         return EMPLOYEE_DELETED_SUCCESSFULLY;
     }
 
